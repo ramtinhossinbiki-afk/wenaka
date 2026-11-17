@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<link rel="icon" type="image/png" href="webaklogo-removebg-preview.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WEBAK — طراحی و توسعه سایت، اپلیکیشن، بات و راهکارهای دیجیتال.">
+<title>WEBAK — ایده را به تجربه تبدیل می‌کنیم</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   WEBAK — MODERN STUDIO
+   Single-file HTML / CSS / JS
+========================================================= */
+
+:root{
+  --orange:#ff6b00;
+  --orange2:#ff9d2e;
+  --orange3:#ff3d00;
+  --bg:#070a10;
+  --bg2:#0b1019;
+  --bg3:#111925;
+  --text:#f2f5f9;
+  --muted:#8d98aa;
+  --muted2:#5e6a7d;
+  --line:rgba(255,255,255,.075);
+  --glass:rgba(255,255,255,.035);
+  --glass2:rgba(255,255,255,.06);
+  --nav:rgba(7,10,16,.72);
+  --shadow:0 25px 80px rgba(0,0,0,.28);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+[data-theme="light"]{
+  --bg:#f7f8fb;
+  --bg2:#fff;
+  --bg3:#eef1f6;
+  --text:#101622;
+  --muted:#5d6879;
+  --muted2:#8993a3;
+  --line:rgba(16,22,34,.08);
+  --glass:rgba(255,255,255,.72);
+  --glass2:rgba(255,255,255,.92);
+  --nav:rgba(247,248,251,.78);
+  --shadow:0 25px 70px rgba(20,30,50,.1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scrollbar-width:none}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  overflow-x:hidden;
+  transition:background .5s ease,color .5s ease;
+}
+body::-webkit-scrollbar{display:none}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+::selection{background:var(--orange);color:#fff}
+
+#particles{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+.ambient{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 12%,rgba(255,107,0,.075),transparent 28%),
+    radial-gradient(circle at 88% 80%,rgba(255,61,0,.055),transparent 28%);
+}
+.grid-bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  opacity:.25;
+  pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+
+.join-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.join-card{border:1px solid var(--line);background:var(--glass);border-radius:24px;padding:34px;position:relative;overflow:hidden}.join-card.featured{border-color:rgba(255,107,0,.22);background:radial-gradient(circle at 90% 10%,rgba(255,107,0,.12),transparent 40%),var(--glass)}.join-icon{font-size:2.3rem;margin-bottom:18px}.join-card h3{font-size:1.35rem;margin-bottom:10px}.join-card p{font-size:.83rem;color:var(--muted);font-weight:300}.join-list{list-style:none;display:grid;gap:10px;margin:20px 0}.join-list li{font-size:.78rem;color:var(--muted);padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.join-list li::before{content:"✓";color:var(--orange);font-weight:900;margin-left:8px}.ambient:before,.ambient:after{content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.12;animation:orbMove 16s ease-in-out infinite alternate}.ambient:before{width:360px;height:360px;background:var(--orange);top:10%;left:8%}.ambient:after{width:300px;height:300px;background:#ff3d00;right:7%;bottom:8%;animation-delay:-7s}@keyframes orbMove{to{transform:translate(90px,45px) scale(1.25)}}@keyframes pulse{50%{opacity:.35;transform:scale(.7)}}.status-dot{animation:pulse 2s infinite}
+.container{width:min(1160px,90%);margin:auto}
+section{position:relative;z-index:2;padding:110px 0}
+section[id]{scroll-margin-top:100px}
+
+.nav{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:1000;
+  padding:18px 0;
+  transition:.4s var(--ease);
+}
+.nav.scrolled{
+  padding:11px 0;
+  background:var(--nav);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  width:min(1240px,92%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:900;letter-spacing:3px;
+  font-size:1.05rem;
+}
+.brand-mark{
+  width:31px;height:31px;border-radius:10px;
+  background:linear-gradient(135deg,var(--orange),var(--orange3));
+  box-shadow:0 0 28px rgba(255,107,0,.3);
+  position:relative;
+}
+.brand-mark:after{
+  content:"";
+  position:absolute;
+  inset:7px 6px 6px;
+  border:2px solid #fff;
+  border-top-color:transparent;
+  border-radius:5px;
+  transform:rotate(-15deg);
+}
+.nav-links{
+  display:flex;gap:30px;
+  list-style:none;
+  margin-inline:auto;
+}
+.nav-links a{
+  color:var(--muted);
+  font-size:.84rem;
+  transition:.3s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:39px;height:39px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--glass2);
+  color:var(--muted);
+  cursor:pointer;
+  transition:.3s var(--ease);
+}
+.icon-btn:hover{color:var(--orange);border-color:rgba(255,107,0,.35);transform:translateY(-2px)}
+.nav-cta{
+  padding:9px 18px;
+  border:1px solid rgba(255,107,0,.4);
+  color:var(--orange);
+  border-radius:50px;
+  font-size:.8rem;font-weight:700;
+  transition:.3s var(--ease);
+}
+.nav-cta:hover{background:var(--orange);color:white}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:150px 0 100px;
+}
+.hero-layout{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:70px;
+  align-items:center;
+}
+.hero-copy{max-width:680px}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:7px 13px;
+  border:1px solid var(--line);
+  background:var(--glass);
+  border-radius:50px;
+  color:var(--muted);
+  font-size:.75rem;
+  margin-bottom:24px;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 12px var(--orange);
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,5.4rem);
+  line-height:1.15;
+  letter-spacing:-2px;
+  font-weight:900;
+  margin-bottom:24px;
+}
+.gradient{
+  background:linear-gradient(135deg,var(--orange),var(--orange2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero-desc{
+  max-width:600px;
+  color:var(--muted);
+  font-size:1rem;
+  font-weight:300;
+  margin-bottom:34px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 23px;
+  border-radius:50px;
+  font-size:.84rem;
+  font-weight:700;
+  transition:.35s var(--ease);
+}
+.btn-primary{
+  color:#fff;
+  background:var(--orange);
+  box-shadow:0 12px 35px rgba(255,107,0,.22);
+}
+.btn-primary:hover{transform:translateY(-3px);background:var(--orange3);box-shadow:0 18px 42px rgba(255,107,0,.32)}
+.btn-ghost{border:1px solid var(--line);background:var(--glass);color:var(--text)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.35);color:var(--orange)}
+
+.hero-visual{display:flex;justify-content:center}
+.logo-stage{
+  width:min(390px,80vw);
+  aspect-ratio:1;
+  border:1px solid var(--line);
+  border-radius:38px;
+  background:
+    radial-gradient(circle at center,rgba(255,107,0,.13),transparent 48%),
+    var(--glass);
+  box-shadow:var(--shadow);
+  display:grid;place-items:center;
+  position:relative;
+  transform:rotate(2deg);
+}
+.logo-stage:before,.logo-stage:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,107,0,.16);
+  border-radius:50%;
+}
+.logo-stage:before{inset:12%;animation:spin 18s linear infinite}
+.logo-stage:after{inset:22%;animation:spin 12s linear infinite reverse}
+.logo-stage img{
+  width:58%;
+  max-width:220px;
+  filter:drop-shadow(0 0 35px rgba(255,107,0,.48));
+  z-index:2;
+  animation:float 4s ease-in-out infinite;
+}
+.floating-chip{
+  position:absolute;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  background:var(--bg2);
+  border-radius:12px;
+  font-size:.68rem;
+  color:var(--muted);
+  box-shadow:var(--shadow);
+}
+.chip1{top:13%;right:-9%}.chip2{bottom:16%;left:-10%}
+@keyframes float{50%{transform:translateY(-9px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.trust-strip{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--glass);
+}
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.trust-item{
+  padding:27px 18px;
+  text-align:center;
+  border-inline-start:1px solid var(--line);
+}
+.trust-item:first-child{border:0}
+.trust-num{font-size:1.35rem;font-weight:900}
+.trust-label{color:var(--muted);font-size:.72rem}
+
+.section-head{max-width:700px;margin-bottom:55px}
+.section-head.center{text-align:center;margin-inline:auto}
+.kicker{
+  display:inline-block;
+  color:var(--orange);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-bottom:13px;
+}
+.section-head h2{
+  font-size:clamp(1.8rem,4vw,3rem);
+  line-height:1.3;
+  font-weight:900;
+  letter-spacing:-1px;
+  margin-bottom:15px;
+}
+.section-head p{color:var(--muted);font-size:.9rem;font-weight:300}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.card{
+  border:1px solid var(--line);
+  background:var(--glass);
+  border-radius:20px;
+  padding:29px;
+  transition:.4s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.card:before{
+  content:"";
+  position:absolute;
+  width:170px;height:170px;
+  background:radial-gradient(circle,rgba(255,107,0,.1),transparent 70%);
+  top:-80px;left:-80px;
+  opacity:0;transition:.4s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,107,0,.28);
+  background:var(--glass2);
+  box-shadow:var(--shadow);
+}
+.card:hover:before{opacity:1}
+.service-icon{
+  width:50px;height:50px;
+  display:grid;place-items:center;
+  border-radius:15px;
+  background:rgba(255,107,0,.09);
+  border:1px solid rgba(255,107,0,.14);
+  font-size:1.35rem;
+  margin-bottom:20px;
+  transition:.35s;
+}
+.card:hover .service-icon{background:var(--orange);transform:scale(1.06) rotate(-3deg)}
+.card h3{font-size:1rem;margin-bottom:9px}
+.card p{font-size:.81rem;color:var(--muted);font-weight:300}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:19px}
+.tag{
+  padding:4px 9px;border-radius:50px;
+  border:1px solid var(--line);
+  color:var(--muted2);font-size:.62rem;
+}
+
+.process{
+  max-width:850px;
+  margin:auto;
+}
+.step{
+  display:grid;
+  grid-template-columns:65px 1fr;
+  gap:25px;
+  padding:28px 0;
+  border-bottom:1px solid var(--line);
+}
+.step:last-child{border-bottom:0}
+.step-no{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  border:1px solid var(--line);
+  border-radius:50%;
+  font-family:'Montserrat';
+  color:var(--muted2);
+  font-weight:800;
+  transition:.3s;
+}
+.step:hover .step-no{border-color:var(--orange);color:var(--orange)}
+.step h3{font-size:1rem;margin-bottom:6px}
+.step p{font-size:.82rem;color:var(--muted);font-weight:300}
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.member{
+  padding:27px 20px;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--glass);
+  transition:.4s var(--ease);
+}
+.member:hover{transform:translateY(-6px);border-color:rgba(255,107,0,.3);box-shadow:var(--shadow)}
+.avatar{
+  width:82px;height:82px;
+  border-radius:24px;
+  margin:0 auto 17px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(255,107,0,.18),rgba(255,61,0,.04));
+  border:1px solid rgba(255,107,0,.18);
+  font-size:1.7rem;
+}
+.member h3{font-size:.92rem;margin-bottom:4px}
+.member .role{color:var(--orange);font-size:.7rem;font-weight:700;margin-bottom:8px}
+.member .age{color:var(--muted2);font-size:.68rem}
+.team-note{
+  max-width:760px;
+  margin:27px auto 0;
+  padding:13px 18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.72rem;
+  background:var(--glass);
+}
+.team-note strong{color:var(--orange)}
+
+.team-more{
+  display:block;
+  width:max-content;
+  margin:27px auto 0;
+}
+
+.contact-wrap{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:22px;
+  align-items:stretch;
+}
+.contact-intro,.contact-grid-card{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--glass);
+  padding:34px;
+}
+.contact-intro{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.contact-intro h2{font-size:2rem;line-height:1.3;margin-bottom:13px}
+.contact-intro p{color:var(--muted);font-size:.85rem}
+.contact-mark{
+  font-size:2.3rem;
+  margin-bottom:20px;
+}
+.contacts{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+.contact{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  transition:.3s var(--ease);
+}
+.contact:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.3);background:var(--glass2)}
+.contact-icon{
+  width:40px;height:40px;
+  flex:0 0 40px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  background:rgba(255,107,0,.08);
+}
+.contact small{display:block;color:var(--muted2);font-size:.61rem}
+.contact b{font-size:.75rem;word-break:break-word}
+.contact b.ltr{direction:ltr;display:block}
+
+.cta{
+  max-width:960px;
+  margin:auto;
+  text-align:center;
+  padding:65px 30px;
+  border:1px solid rgba(255,107,0,.18);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(255,107,0,.12),transparent 45%),
+    var(--glass);
+}
+.cta h2{font-size:clamp(1.5rem,3vw,2.3rem);margin-bottom:10px}
+.cta p{color:var(--muted);font-size:.85rem;margin-bottom:24px}
+
+footer{
+  padding:55px 0 30px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  position:relative;z-index:2;
+}
+.footer-brand{font-family:'Montserrat';font-weight:900;letter-spacing:3px;font-size:1.05rem}
+.footer-links{display:flex;justify-content:center;gap:22px;margin:20px 0;flex-wrap:wrap}
+.footer-links a{color:var(--muted);font-size:.73rem}
+.footer-links a:hover{color:var(--orange)}
+.copy{color:var(--muted2);font-size:.67rem}
+
+.reveal{opacity:0;transform:translateY(28px);transition:.8s var(--ease)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:950px){
+  .join-wrap{grid-template-columns:1fr}
+  .hero-layout{grid-template-columns:1fr;text-align:center}
+  .hero-copy{margin:auto}
+  .hero-desc{margin-inline:auto}
+  .hero-actions{justify-content:center}
+  .hero-visual{order:-1}
+  .logo-stage{width:290px}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-wrap{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .nav-links,.nav-cta{display:none}
+  .nav-inner{justify-content:space-between}
+  section{padding:75px 0}
+  .hero{padding-top:120px}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-item:nth-child(3){border-inline-start:0;border-top:1px solid var(--line)}
+  .trust-item:nth-child(4){border-top:1px solid var(--line)}
+  .services{grid-template-columns:1fr}
+  .contacts{grid-template-columns:1fr}
+  .step{grid-template-columns:48px 1fr;gap:14px}
+  .step-no{width:44px;height:44px}
+}
+@media(max-width:460px){
+  .team-grid{grid-template-columns:1fr}
+  .hero h1{letter-spacing:-1px}
+  .contact-intro,.contact-grid-card{padding:24px}
+}
+
+/* RTL/LTR helper */
+[dir="ltr"] .hero-copy{text-align:left}
+[dir="rtl"] .hero-copy{text-align:right}
+@media(max-width:950px){
+  [dir="ltr"] .hero-copy,[dir="rtl"] .hero-copy{text-align:center}
+}
+
+
+/* ===== WEBAK Build Slider ===== */
+/* ===== Moving build row ===== */
+.build-slider{margin:42px auto 0;max-width:1100px}
+.build-marquee{overflow:hidden;position:relative;direction:ltr;padding:10px 0 18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.build-track{display:flex;width:max-content;gap:12px;animation:buildMarquee 28s linear infinite}
+.build-marquee:hover .build-track{animation-play-state:paused}
+.build-item{flex:0 0 auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--glass);color:var(--text);border-radius:50px;padding:12px 19px;font:inherit;font-size:.78rem;cursor:pointer;white-space:nowrap;transition:.3s var(--ease)}
+.build-item:hover,.build-item.active{color:#fff;background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
+.build-item span{font-size:1rem}
+@keyframes buildMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.build-info{max-width:850px;margin:18px auto 0;padding:22px 8px 5px;border-top:1px solid var(--line);text-align:center}
+.build-info-title{display:flex;align-items:center;justify-content:center;gap:12px}
+.build-badge{min-width:34px;height:34px;padding:0 8px;display:grid;place-items:center;border-radius:50%;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.2);color:var(--orange);font-size:.65rem;font-weight:800}
+.build-info h3{font-size:1.25rem;margin:0}
+.build-info>p{margin:8px 0 0;color:var(--muted);font-size:.82rem;line-height:1.9}
+.build-detail{margin:13px auto 0;max-width:760px;color:var(--muted2);font-size:.76rem;line-height:2.05;animation:buildDetailIn .35s ease}
+.build-detail strong{color:var(--text)}
+@keyframes buildDetailIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.build-track{gap:8px}.build-item{padding:10px 15px;font-size:.73rem}.build-info{padding-top:19px}.build-info-title{gap:9px}.build-info h3{font-size:1rem}}
+
+/* ===== WEBAK V2 additions ===== */
+html{scroll-behavior:smooth}
+img{
+  -webkit-user-drag:none;
+  user-drag:none;
+  user-select:none;
+}
+.hero-visual img{pointer-events:none}
+body.no-copy, body.no-copy *{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+}
+.scroll-hint{
+  position:absolute;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  font-size:.68rem;
+  opacity:.85;
+  z-index:5;
+  animation:hintFloat 2s ease-in-out infinite;
+}
+.scroll-hint .mouse{
+  width:22px;height:34px;border:1.5px solid currentColor;border-radius:14px;
+  position:relative;
+}
+.scroll-hint .mouse:after{
+  content:"";position:absolute;top:6px;left:50%;width:3px;height:7px;
+  transform:translateX(-50%);border-radius:3px;background:var(--orange);
+  animation:wheel 1.7s ease-in-out infinite;
+}
+.scroll-hint .arrow{font-size:1rem;color:var(--orange)}
+@keyframes wheel{0%,100%{transform:translate(-50%,0);opacity:1}70%{transform:translate(-50%,7px);opacity:.2}}
+@keyframes hintFloat{50%{transform:translate(-50%,-5px)}}
+
+.back-top{
+  position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:16px;
+  border:1px solid rgba(255,107,0,.25);background:var(--glass2);color:var(--orange);
+  display:grid;place-items:center;cursor:pointer;z-index:999;
+  opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:.35s var(--ease);backdrop-filter:blur(14px);
+}
+.back-top.show{opacity:1;visibility:visible;transform:none}
+.back-top:hover{background:var(--orange);color:#fff;transform:translateY(-3px)}
+
+.faq-grid{max-width:900px;margin:auto;display:grid;gap:11px}
+.faq-item{
+  border:1px solid var(--line);border-radius:17px;background:var(--glass);overflow:hidden;
+}
+.faq-question{
+  width:100%;border:0;background:transparent;color:var(--text);padding:20px 22px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  cursor:pointer;text-align:inherit;font-weight:700;font-size:.86rem;
+}
+.faq-question span:last-child{color:var(--orange);font-size:1.2rem;transition:.3s}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-answer p{padding:0 22px 20px;color:var(--muted);font-size:.78rem;font-weight:300}
+.faq-item.open .faq-answer{max-height:420px}
+.faq-item.open .faq-question span:last-child{transform:rotate(45deg)}
+
+@media(max-width:600px){
+  .scroll-hint{bottom:14px}
+  .back-top{right:14px;bottom:14px}
+}
+
+
+/* ===== WEBAK TEAM / JOIN FORM / HTML LAB ===== */
+.founder-card{
+  grid-column:span 2;
+  border-color:rgba(255,107,0,.48);
+  background:
+    radial-gradient(circle at 85% 10%,rgba(255,107,0,.18),transparent 34%),
+    linear-gradient(145deg,rgba(255,107,0,.09),var(--glass));
+  box-shadow:0 18px 65px rgba(255,107,0,.11);
+  transform:translateY(-2px);
+}
+.founder-card:after{
+  content:"★ بنیان‌گذار";
+  position:absolute;top:15px;right:15px;
+  padding:5px 10px;border-radius:50px;
+  background:var(--orange);color:#fff;
+  font-size:.62rem;font-weight:900;
+  box-shadow:0 7px 20px rgba(255,107,0,.25);
+}
+.founder-card .avatar{
+  width:100px;height:100px;
+  border-radius:30px;
+  font-size:2rem;
+  background:linear-gradient(135deg,rgba(255,107,0,.28),rgba(255,61,0,.08));
+  border-color:rgba(255,107,0,.4);
+  box-shadow:0 0 35px rgba(255,107,0,.15);
+}
+.member-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:8px;padding:4px 9px;border-radius:50px;
+  border:1px solid var(--line);color:var(--muted);
+  font-size:.6rem;background:rgba(255,255,255,.025);
+}
+.join-form-wrap,.html-lab{
+  max-width:1000px;margin:24px auto 0;
+  border:1px solid var(--line);border-radius:26px;
+  background:var(--glass);padding:28px;
+}
+.join-form{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.form-field{display:grid;gap:7px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:.72rem;color:var(--muted);font-weight:700}
+.form-field input,.form-field textarea{
+  width:100%;border:1px solid var(--line);border-radius:14px;
+  background:var(--bg2);color:var(--text);padding:12px 14px;
+  font:inherit;font-size:.78rem;outline:none;transition:.3s;
+}
+.form-field input:focus,.form-field textarea:focus{
+  border-color:rgba(255,107,0,.5);box-shadow:0 0 0 3px rgba(255,107,0,.08);
+}
+.form-field textarea{min-height:105px;resize:vertical}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.form-status{margin-top:12px;color:var(--muted);font-size:.72rem;min-height:1.5em}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lab-panel{
+  min-height:380px;border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;background:var(--bg2);
+}
+.lab-panel-head{
+  padding:10px 14px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  color:var(--muted);font-size:.7rem;
+}
+#htmlCode{
+  width:100%;height:335px;display:block;resize:none;border:0;outline:0;
+  padding:15px;background:#0b1019;color:#e9edf3;
+  direction:ltr;text-align:left;font:14px/1.6 Consolas,Monaco,monospace;
+}
+#htmlPreview{width:100%;height:335px;display:block;border:0;background:#fff}
+.lab-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.lab-tip{color:var(--muted);font-size:.72rem;margin-top:12px}
+@media(max-width:700px){
+  .founder-card{grid-column:span 1}
+  .join-form-wrap,.html-lab{padding:18px;border-radius:20px}
+  .join-form,.lab-grid{grid-template-columns:1fr}
+  .form-field.full{grid-column:auto}
+  .lab-panel{min-height:320px}
+  #htmlCode,#htmlPreview{height:275px}
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+<div class="ambient"></div>
+<div class="grid-bg"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"></span>
+      <span>WEBAK</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav_services">خدمات</a></li>
+      <li><a href="#process" data-i18n="nav_process">فرآیند</a></li>
+      <li><a href="#team" data-i18n="nav_team">تیم ما</a></li>
+      <li><a href="#join" data-i18n="nav_join">پیوستن به تیم</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">ارتباط</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="theme">☾</button>
+      <button class="icon-btn" id="langBtn" aria-label="language">EN</button>
+      <a class="nav-cta" href="#contact" data-i18n="nav_cta">شروع پروژه</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="container hero-layout">
+    <div class="hero-copy reveal">
+      <div class="eyebrow">
+        <span class="status-dot"></span>
+        <span data-i18n="hero_badge">یک تیم کوچک، با ایده‌های بزرگ</span>
+      </div>
+
+      <h1>
+        <span data-i18n="hero_1">ایده‌ات را</span>
+        <span class="gradient" data-i18n="hero_2"> دیجیتال</span>
+        <span data-i18n="hero_3"> می‌کنیم.</span>
+      </h1>
+
+      <p class="hero-desc" data-i18n="hero_desc">
+        WEBAK یک تیم نوجوان و خلاق برای ساخت سایت، اپلیکیشن، بات و تجربه‌های دیجیتال است؛
+        جایی که ایده فقط روی کاغذ نمی‌ماند.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact" data-i18n="hero_btn1">شروع یک پروژه ↗</a>
+        <a class="btn btn-ghost" href="#team" data-i18n="hero_btn2">آشنایی با تیم</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="logo-stage">
+        <span class="floating-chip chip1">⚡ Digital Studio</span>
+        <img src="webaklogo-removebg-preview.png" alt="WEBAK">
+        <span class="floating-chip chip2">🚀 Build • Create • Ship</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="mouse"></div>
+    <span data-i18n="scroll_hint">اسکرول کن</span>
+    <span class="arrow">⌄</span>
+  </div>
+</header>
+
+<div class="trust-strip">
+  <div class="container trust-grid">
+    <div class="trust-item"><div class="trust-num">01</div><div class="trust-label" data-i18n="trust1">ایده تا اجرا</div></div>
+    <div class="trust-item"><div class="trust-num">⚡</div><div class="trust-label" data-i18n="trust2">تمرکز روی سرعت</div></div>
+    <div class="trust-item"><div class="trust-num">✦</div><div class="trust-label" data-i18n="trust3">طراحی اختصاصی</div></div>
+    <div class="trust-item"><div class="trust-num">∞</div><div class="trust-label" data-i18n="trust4">یادگیری و رشد</div></div>
+  </div>
+</div>
+
+<main>
+<section id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker" data-i18n="services_kicker">WHAT WE DO</span>
+      <h2><span data-i18n="services_title1">چیزهایی می‌سازیم که</span> <span class="gradient" data-i18n="services_title2">دیده می‌شوند.</span></h2>
+      <p data-i18n="services_desc">از اولین طرح تا نسخه نهایی، روی ظاهر، تجربه کاربری و عملکرد تمرکز می‌کنیم.</p>
+    </div>
+
+
+    <div class="build-slider reveal" id="buildSlider">
+      <div class="build-marquee" id="buildMarquee">
+        <div class="build-track" id="buildTrack">
+          <button class="build-item active" data-build="bots"><span>🤖</span> بات</button>
+          <button class="build-item" data-build="web"><span>🌐</span> سایت</button>
+          <button class="build-item" data-build="app"><span>📱</span> اپلیکیشن</button>
+          <button class="build-item" data-build="logo"><span>🎨</span> لوگو</button>
+          <button class="build-item" data-build="ppt"><span>📊</span> پاورپوینت</button>
+          <button class="build-item" data-build="python"><span>🐍</span> پایتون</button>
+          <button class="build-item" data-build="arduino"><span>🔧</span> آردوینو</button>
+          <button class="build-item" data-build="ui"><span>🖥️</span> طراحی UI</button>
+          <button class="build-item" data-build="photo"><span>🖼️</span> ادیت عکس</button>
+          <button class="build-item" data-build="custom"><span>⚙️</span> پروژه اختصاصی</button>
+          <button class="build-item clone" data-build="bots"><span>🤖</span> بات</button>
+          <button class="build-item clone" data-build="web"><span>🌐</span> سایت</button>
+          <button class="build-item clone" data-build="app"><span>📱</span> اپلیکیشن</button>
+          <button class="build-item clone" data-build="logo"><span>🎨</span> لوگو</button>
+          <button class="build-item clone" data-build="ppt"><span>📊</span> پاورپوینت</button>
+          <button class="build-item clone" data-build="python"><span>🐍</span> پایتون</button>
+          <button class="build-item clone" data-build="arduino"><span>🔧</span> آردوینو</button>
+          <button class="build-item clone" data-build="ui"><span>🖥️</span> طراحی UI</button>
+          <button class="build-item clone" data-build="photo"><span>🖼️</span> ادیت عکس</button>
+          <button class="build-item clone" data-build="custom"><span>⚙️</span> پروژه اختصاصی</button>
+        </div>
+      </div>
+
+      <div class="build-info" aria-live="polite">
+        <div class="build-info-title">
+          <span class="build-badge" id="buildBadge">01</span>
+          <h3 id="buildTitle">🤖 بات‌های هوشمند و اختصاصی</h3>
+        </div>
+        <p id="buildShort">ساخت بات برای سروش، تلگرام، بله و سایر پیام‌رسان‌ها با امکانات اختصاصی.</p>
+        <div class="build-detail" id="buildDetail">طراحی و توسعه بات‌های اختصاصی برای <strong>سروش، تلگرام، بله و سایر پیام‌رسان‌ها</strong>؛ از بات‌های ساده دارای منو و پاسخ خودکار تا سیستم‌های پیشرفته برای ثبت سفارش، مدیریت کاربران، اطلاع‌رسانی، پشتیبانی و اتصال به سرویس‌های مختلف.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker" data-i18n="process_kicker">HOW IT WORKS</span>
+      <h2><span data-i18n="process_title1">از ایده تا</span> <span class="gradient" data-i18n="process_title2">ساختن.</span></h2>
+      <p data-i18n="process_desc">فرآیند ما ساده است؛ ارتباط شفاف، طراحی فکرشده و اجرای مرحله‌به‌مرحله.</p>
+    </div>
+
+    <div class="process">
+      <div class="step reveal"><div class="step-no">01</div><div><h3 data-i18n="p1t">کشف ایده</h3><p data-i18n="p1d">نیاز، هدف و مخاطب پروژه را مشخص می‌کنیم تا قبل از ساختن، بدانیم دقیقاً چه چیزی باید ساخته شود.</p></div></div>
+      <div class="step reveal"><div class="step-no">02</div><div><h3 data-i18n="p2t">طراحی مسیر</h3><p data-i18n="p2d">ساختار، تجربه کاربری و مسیر اجرای پروژه را مشخص می‌کنیم و کار را به مراحل قابل مدیریت تقسیم می‌کنیم.</p></div></div>
+      <div class="step reveal"><div class="step-no">03</div><div><h3 data-i18n="p3t">ساخت و تست</h3><p data-i18n="p3d">توسعه انجام می‌شود، بخش‌ها تست می‌شوند و در طول مسیر بازخوردها را وارد محصول می‌کنیم.</p></div></div>
+      <div class="step reveal"><div class="step-no">04</div><div><h3 data-i18n="p4t">تحویل و رشد</h3><p data-i18n="p4d">نسخه نهایی تحویل می‌شود و ساختار پروژه طوری آماده می‌شود که بتواند در آینده توسعه پیدا کند.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker" data-i18n="team_kicker">THE TEAM</span>
+      <h2><span data-i18n="team_title1">پشت WEBAK،</span> <span class="gradient" data-i18n="team_title2">ما هستیم.</span></h2>
+      <p data-i18n="team_desc">یک تیم جوان که از یادگیری، ساختن و امتحان کردن ایده‌های جدید انرژی می‌گیرد.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="member founder-card reveal">
+        <div class="avatar">👑</div>
+        <h3>رامتین حسین بیکی</h3>
+        <div class="role" data-i18n="founder">بنیان‌گذار WEBAK</div>
+        <div class="age" data-birth="1390-10-02">-- <span data-i18n="years">ساله</span></div>
+        <div class="member-badge">⭐ Founder • WEBAK</div>
+      </article>
+
+      <article class="member reveal">
+        <div class="avatar">🧑🏻‍💻</div>
+        <h3>آرشام کریمی گزافرودی</h3>
+        <div class="role" data-i18n="engineer">مهندس / توسعه‌دهنده</div>
+        <div class="age" data-birth="1390-10-17">-- <span data-i18n="years2">ساله</span></div>
+      </article>
+
+      <article class="member reveal">
+        <div class="avatar">👨🏻‍💻</div>
+        <h3>امیرعلی پیش سرایی</h3>
+        <div class="role" data-i18n="member">عضو تیم</div>
+        <div class="age" data-birth="1391-05-23">-- <span data-i18n="years3">ساله</span></div>
+      </article>
+
+      <article class="member reveal">
+        <div class="avatar">🧑🏻‍💻</div>
+        <h3>هیوا عصری</h3>
+        <div class="role" data-i18n="member2">عضو تیم</div>
+        <div class="age" data-birth="1391-07-20">-- <span data-i18n="years4">ساله</span></div>
+      </article>
+
+      <article class="member reveal">
+        <div class="avatar">👨🏻‍💻</div>
+        <h3>محمد کیان بشیری نحنجی</h3>
+        <div class="role" data-i18n="member3">عضو تیم</div>
+        <div class="age" data-birth="1390-11-15">-- <span data-i18n="years5">ساله</span></div>
+      </article>
+    </div>
+
+    <div class="team-note reveal">
+      <span data-i18n="team_note">بله، اعضای تیم ما هنوز نوجوان هستند؛ اما</span>
+      <strong data-i18n="team_note_strong">یادگیری، ساختن و تجربه کردن را از همین حالا جدی گرفته‌ایم.</strong>
+    </div>
+
+    <!-- این لینک را بعداً می‌توانی به فایل معرفی کامل تیم وصل کنی -->
+    <a class="btn btn-ghost team-more reveal" href="team.html" data-i18n="team_more">معرفی کامل مهندسین ↗</a>
+  </div>
+</section>
+
+<section id="join"><div class="container">
+  <div class="section-head center reveal"><span class="kicker">JOIN WEBAK</span><h2>تو هم می‌تونی بخشی از <span class="gradient">تیم باشی.</span></h2><p>اگر اهل یادگیری، ساختن و ایده‌پردازی هستی، فرم زیر را کامل کن تا درخواستت را برای بررسی آماده کنیم.</p></div>
+  <div class="join-wrap">
+    <div class="join-card featured reveal"><div class="join-icon">🚀</div><h3>پیوستن به تیم سازنده</h3><p>دنبال افراد باانگیزه‌ای هستیم که دوست دارند در پروژه‌های واقعی تجربه کسب کنند و همراه تیم رشد کنند.</p><ul class="join-list"><li>برنامه‌نویسی و توسعه</li><li>طراحی UI/UX و گرافیک</li><li>ایده‌پردازی و تولید محتوا</li><li>کار با Python، Arduino و فناوری‌های جدید</li></ul><button class="btn btn-primary" type="button" id="openJoinForm">📝 تکمیل فرم عضویت</button></div>
+    <div class="join-card reveal"><div class="join-icon">💡</div><h3>چه کسی مناسب WEBAK است؟</h3><p>لازم نیست از همان روز اول حرفه‌ای باشی. چیزی که برای ما مهم‌تر است، علاقه، مسئولیت‌پذیری، یادگیری و توانایی کار تیمی است.</p><ul class="join-list"><li>علاقه واقعی به یادگیری</li><li>مسئولیت‌پذیری در پروژه</li><li>احترام به اعضای تیم</li><li>داشتن ایده و روحیه ساختن</li></ul></div>
+  </div>
+
+  <div class="join-form-wrap reveal" id="joinFormWrap" hidden>
+    <div class="section-head" style="margin-bottom:22px"><span class="kicker">WEBAK APPLICATION</span><h2>📋 فرم درخواست عضویت</h2><p>اطلاعات را وارد کن؛ در پایان متن درخواست آماده می‌شود، کپی می‌شود و صفحه سروش رامتین باز خواهد شد.</p></div>
+    <form class="join-form" id="joinForm">
+      <div class="form-field"><label>👤 نام و نام خانوادگی *</label><input id="joinName" required placeholder="مثلاً علی رضایی"></div>
+      <div class="form-field"><label>🎂 سال تولد (شمسی) *</label><input id="joinBirth" required inputmode="numeric" placeholder="مثلاً 1392"></div>
+      <div class="form-field"><label>🔢 سن *</label><input id="joinAge" required inputmode="numeric" placeholder="مثلاً 14"></div>
+      <div class="form-field"><label>🏫 مدرسه *</label><input id="joinSchool" required placeholder="نام مدرسه"></div>
+      <div class="form-field"><label>🤝 راه آشنایی با WEBAK *</label><input id="joinHow" required placeholder="مثلاً معرفی دوست / سایت / سروش"></div>
+      <div class="form-field"><label>📱 آیدی سروش</label><input id="joinSoroush" placeholder="@username"></div>
+      <div class="form-field"><label>☎️ شماره تماس</label><input id="joinPhone" inputmode="tel" placeholder="09xxxxxxxxx"></div>
+      <div class="form-field full"><label>💬 توضیحات یا مهارت‌ها</label><textarea id="joinSkills" placeholder="مهارت‌ها، علایق، تجربه‌ها یا چیزی که دوست داری در WEBAK انجام بدهی..."></textarea></div>
+    </form>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="button" id="copyJoinRequest">📋 ساخت و کپی درخواست</button>
+      <button class="btn btn-ghost" type="button" id="openSoroush">📱 باز کردن سروش رامتین</button>
+    </div>
+    <div class="form-status" id="joinStatus"></div>
+  </div>
+</div></section>
+
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker" data-i18n="faq_kicker">FAQ</span>
+      <h2><span data-i18n="faq_title1">سوالات</span> <span class="gradient" data-i18n="faq_title2">پرتکرار.</span></h2>
+      <p data-i18n="faq_desc">جواب چند سوالی که معمولاً قبل از شروع همکاری پرسیده می‌شود.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <button class="faq-question"><span data-i18n="faq1q">WEBAK دقیقاً چه خدماتی ارائه می‌دهد؟</span><span>+</span></button>
+        <div class="faq-answer"><p data-i18n="faq1a">طراحی سایت، اپلیکیشن، بات و اتوماسیون، لوگو، پاورپوینت، آموزش Python و Arduino، طراحی رابط برنامه و ویرایش تصویر از خدمات ماست.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span data-i18n="faq2q">برای شروع پروژه چه اطلاعاتی لازم است؟</span><span>+</span></button>
+        <div class="faq-answer"><p data-i18n="faq2a">توضیح کوتاه درباره ایده، امکانات موردنیاز، زمان تقریبی و اگر دارید نمونه یا مرجع طراحی کافی است.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span data-i18n="faq3q">آیا قبل از شروع، درباره هزینه صحبت می‌کنیم؟</span><span>+</span></button>
+        <div class="faq-answer"><p data-i18n="faq3a">بله. بعد از بررسی نیازهای پروژه، درباره محدوده کار و هزینه با شما هماهنگ می‌کنیم.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span data-i18n="faq4q">آیا اعضای WEBAK هنوز نوجوان هستند؟</span><span>+</span></button>
+        <div class="faq-answer"><p data-i18n="faq4a">بله؛ تیم ما جوان است و هم‌زمان با یادگیری، روی پروژه‌های واقعی و تجربه‌های عملی کار می‌کند.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span data-i18n="faq5q">چطور می‌توانم به تیم WEBAK بپیوندم؟</span><span>+</span></button>
+        <div class="faq-answer"><p data-i18n="faq5a">از بخش «پیوستن به تیم» درخواستت را ارسال کن تا درباره زمینه علاقه، مهارت‌ها و نحوه همکاری صحبت کنیم.</p></div>
+      </div>
+      <div class="faq-item reveal"><button class="faq-question"><span data-i18n="faq6q">سایت WEBAK روی موبایل هم درست نمایش داده می‌شود؟</span><span>+</span></button><div class="faq-answer"><p data-i18n="faq6a">بله؛ ساختار سایت واکنش‌گراست و بخش‌ها برای اندازه‌های مختلف صفحه، از موبایل تا دسکتاپ، تنظیم شده‌اند.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span data-i18n="faq7q">امنیت سایت WEBAK چطور است؟</span><span>+</span></button><div class="faq-answer"><p data-i18n="faq7a">امنیت برای ما مهم است و سایت با HTTPS و اصول رایج توسعه وب نگهداری می‌شود. با این حال هیچ سایت اینترنتی را نمی‌توان ۱۰۰٪ غیرقابل نفوذ اعلام کرد.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span data-i18n="faq8q">آیا می‌توانم قبل از سفارش نمونه کارها را ببینم؟</span><span>+</span></button><div class="faq-answer"><p data-i18n="faq8a">بله؛ می‌توانی از بخش‌های پروژه‌ها و خدمات سایت برای آشنایی با زمینه‌های کاری ما استفاده کنی.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span data-i18n="faq9q">آیا پروژه بعداً قابل توسعه است؟</span><span>+</span></button><div class="faq-answer"><p data-i18n="faq9a">تا حد امکان ساختار پروژه را طوری طراحی می‌کنیم که اضافه کردن قابلیت‌های جدید در آینده ساده‌تر باشد.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span data-i18n="faq10q">اگر ایده‌ام در خدمات شما نبود چه؟</span><span>+</span></button><div class="faq-answer"><p data-i18n="faq10a">مشکلی نیست؛ ایده را توضیح بده تا بررسی کنیم آیا می‌توانیم برای آن یک راهکار اختصاصی طراحی کنیم.</p></div></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="html-lab">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">HTML LAB</span>
+      <h2>🧪 آزمایشگاه <span class="gradient">HTML</span></h2>
+      <p>کدت را بنویس و نتیجه را همان لحظه ببین؛ یک محیط ساده و مستقل برای تست HTML داخل خود WEBAK.</p>
+    </div>
+    <div class="html-lab reveal">
+      <div class="lab-grid">
+        <div class="lab-panel">
+          <div class="lab-panel-head"><span>💻 HTML Editor</span><span>LIVE</span></div>
+          <textarea id="htmlCode" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+body{font-family:Arial;text-align:center;padding:30px}
+h1{color:#ff6b00}
+button{padding:10px 18px;border:0;border-radius:10px;background:#ff6b00;color:white}
+</style>
+</head>
+<body>
+<h1>سلام از WEBAK 👋</h1>
+<p>کدت را تغییر بده و اجرا کن!</p>
+<button onclick="alert('WEBAK 🚀')">کلیک کن</button>
+</body>
+</html></textarea>
+        </div>
+        <div class="lab-panel">
+          <div class="lab-panel-head"><span>👁️ Preview</span><span>RESULT</span></div>
+          <iframe id="htmlPreview" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <div class="lab-actions">
+        <button class="btn btn-primary" type="button" id="runHtml">▶️ اجرا</button>
+        <button class="btn btn-ghost" type="button" id="resetHtml">↺ بازنشانی</button>
+      </div>
+      <p class="lab-tip">🔒 کد داخل مرورگر خود کاربر اجرا می‌شود و برای تست‌های ساده HTML/CSS/JavaScript طراحی شده است.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta reveal">
+      <div style="font-size:2rem;margin-bottom:12px">🚀</div>
+      <h2 data-i18n="cta_title">یک ایده داری؟ بیایید بسازیمش.</h2>
+      <p data-i18n="cta_desc">پروژه‌های خوب از یک گفت‌وگوی ساده شروع می‌شوند.</p>
+      <a href="#contact" class="btn btn-primary" data-i18n="cta_btn">شروع گفتگو ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker" data-i18n="contact_kicker">CONTACT</span>
+      <h2><span data-i18n="contact_title1">بیا در</span> <span class="gradient" data-i18n="contact_title2">ارتباط باشیم.</span></h2>
+      <p data-i18n="contact_desc">از هر راهی که راحت‌تری با ما تماس بگیر.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="contact-intro reveal">
+        <div class="contact-mark">✦</div>
+        <h2 data-i18n="contact_big">حرفی برای ساختن داری؟</h2>
+        <p data-i18n="contact_big_desc">ایده‌ات را بگو؛ از یک سایت کوچک تا یک پروژه کامل، اول درباره چیزی که می‌خواهی صحبت می‌کنیم.</p>
+      </div>
+
+      <div class="contact-grid-card reveal">
+        <div class="contacts">
+          <a class="contact" href="https://splus.ir/RAMtinHB" target="_blank" rel="noopener">
+            <div class="contact-icon">📱</div><div><small data-i18n="c1">سروش</small><b class="ltr">@RAMtinHB</b></div>
+          </a>
+          <a class="contact" href="https://splus.ir/webakbot" target="_blank" rel="noopener">
+            <div class="contact-icon">🤖</div><div><small data-i18n="c2">بات سروش</small><b class="ltr">@webakbot</b></div>
+          </a>
+          <a class="contact" href="https://splus.ir/WEBAK" target="_blank" rel="noopener">
+            <div class="contact-icon">📢</div><div><small data-i18n="c3">کانال رسمی</small><b class="ltr">splus.ir/WEBAK</b></div>
+          </a>
+          <a class="contact" href="https://github.com/ramtinhossinbiki-afk" target="_blank" rel="noopener">
+            <div class="contact-icon">💻</div><div><small data-i18n="c4">گیت‌هاب</small><b class="ltr">ramtinhossinbiki-afk</b></div>
+          </a>
+          <a class="contact" href="tel:09300545003">
+            <div class="contact-icon">📞</div><div><small data-i18n="c5">شماره تماس</small><b class="ltr">09300545003</b></div>
+          </a>
+          <a class="contact" href="mailto:ramtinbiki@gmail.com,ramtinhossinbiki@gmail.com">
+            <div class="contact-icon">✉️</div><div><small data-i18n="c6">ایمیل</small><b class="ltr">ramtinbiki@gmail.com</b></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-brand">WEBAK</div>
+    <div class="footer-links">
+      <a href="#services" data-i18n="f1">خدمات</a>
+      <a href="#team" data-i18n="f2">تیم</a>
+      <a href="#contact" data-i18n="f3">ارتباط</a>
+      <a href="https://github.com/ramtinhossinbiki-afk" target="_blank">GitHub</a>
+    </div>
+    <div class="copy" data-i18n="copy">© WEBAK — ساخته‌شده با ایده، کد و کمی دیوانگی 🚀</div>
+  </div>
+</footer>
+
+<script>
+const translations={
+fa:{
+nav_services:"خدمات",nav_process:"فرآیند",nav_team:"تیم ما",nav_join:"پیوستن به تیم",nav_contact:"ارتباط",nav_cta:"شروع پروژه",
+hero_badge:"یک تیم کوچک، با ایده‌های بزرگ",hero_1:"ایده‌ات را",hero_2:" دیجیتال",hero_3:" می‌کنیم.",
+hero_desc:"WEBAK یک تیم نوجوان و خلاق برای ساخت سایت، اپلیکیشن، بات و تجربه‌های دیجیتال است؛ جایی که ایده فقط روی کاغذ نمی‌ماند.",
+hero_btn1:"شروع یک پروژه ↗",hero_btn2:"آشنایی با تیم",
+trust1:"ایده تا اجرا",trust2:"تمرکز روی سرعت",trust3:"طراحی اختصاصی",trust4:"یادگیری و رشد",
+services_kicker:"WHAT WE DO",services_title1:"چیزهایی می‌سازیم که",services_title2:"دیده می‌شوند.",
+services_desc:"از اولین طرح تا نسخه نهایی، روی ظاهر، تجربه کاربری و عملکرد تمرکز می‌کنیم.",
+s1t:"وب‌سایت‌های مدرن",s1d:"سایت‌های سریع، ریسپانسیو و حرفه‌ای که برای برند شما طراحی می‌شوند، نه برای یک قالب تکراری.",
+s2t:"اپلیکیشن",s2d:"ایده موبایلی شما را به محصولی کاربردی با رابط کاربری تمیز و تجربه‌ای روان تبدیل می‌کنیم.",
+s3t:"بات و اتوماسیون",s3d:"بات‌های کاربردی برای سرویس‌های مختلف، از پاسخ‌گویی و مدیریت تا اتوماسیون کارهای تکراری.",
+s4t:"طراحی و هویت دیجیتال",s4d:"از ترکیب رنگ و تایپوگرافی تا ساخت یک رابط کاربری منسجم، ظاهر محصول را به بخشی از هویت آن تبدیل می‌کنیم.",
+s5t:"ترجمه و محتوای دیجیتال",s5d:"ترجمه و آماده‌سازی محتوای فارسی و انگلیسی با تمرکز روی خوانایی و لحن طبیعی.",
+s6t:"بهینه‌سازی و توسعه",s6d:"رفع مشکلات فنی، بهبود سرعت، مرتب‌سازی ساختار و آماده‌سازی پروژه برای رشد آینده.",s7t:"طراحی لوگوی حرفه‌ای",s7d:"ساخت لوگوهای اختصاصی و حرفه‌ای متناسب با نام، شخصیت و هویت برند شما.",s8t:"طراحی پاورپوینت",s8d:"ساخت ارائه‌های مرتب، جذاب و حرفه‌ای برای مدرسه، دانشگاه، پروژه و ارائه‌های کاری.",s9t:"آموزش پایتون",s9d:"آموزش مفاهیم و پروژه‌های پایتون با رویکرد ساده و پروژه‌محور برای شروع برنامه‌نویسی.",s10t:"آموزش آردوینو",s10d:"آشنایی با آردوینو، کدنویسی و ساخت پروژه‌های الکترونیکی و خلاقانه.",s11t:"طراحی محیط برنامه",s11d:"طراحی ظاهر و رابط کاربری برنامه‌ها با تمرکز روی نظم، خوانایی و تجربه کاربری.",s12t:"بهبود عکس و فتوشاپ",s12d:"بهبود کیفیت، اصلاح و ویرایش تصاویر و انجام کارهای گرافیکی موردنیاز پروژه.",
+process_kicker:"HOW IT WORKS",process_title1:"از ایده تا",process_title2:"ساختن.",
+process_desc:"فرآیند ما ساده است؛ ارتباط شفاف، طراحی فکرشده و اجرای مرحله‌به‌مرحله.",
+p1t:"کشف ایده",p1d:"نیاز، هدف و مخاطب پروژه را مشخص می‌کنیم تا قبل از ساختن، بدانیم دقیقاً چه چیزی باید ساخته شود.",
+p2t:"طراحی مسیر",p2d:"ساختار، تجربه کاربری و مسیر اجرای پروژه را مشخص می‌کنیم و کار را به مراحل قابل مدیریت تقسیم می‌کنیم.",
+p3t:"ساخت و تست",p3d:"توسعه انجام می‌شود، بخش‌ها تست می‌شوند و در طول مسیر بازخوردها را وارد محصول می‌کنیم.",
+p4t:"تحویل و رشد",p4d:"نسخه نهایی تحویل می‌شود و ساختار پروژه طوری آماده می‌شود که بتواند در آینده توسعه پیدا کند.",
+team_kicker:"THE TEAM",team_title1:"پشت WEBAK،",team_title2:"ما هستیم.",
+team_desc:"یک تیم جوان که از یادگیری، ساختن و امتحان کردن ایده‌های جدید انرژی می‌گیرد.",
+founder:"بنیان‌گذار WEBAK",engineer:"مهندس / توسعه‌دهنده",member:"عضو تیم",member2:"عضو تیم",member3:"عضو تیم",
+years:"ساله",years2:"ساله",years3:"ساله",years4:"ساله",years5:"ساله",
+team_note:"بله، اعضای تیم ما هنوز نوجوان هستند؛ اما",team_note_strong:"یادگیری، ساختن و تجربه کردن را از همین حالا جدی گرفته‌ایم.",
+team_more:"معرفی کامل مهندسین ↗",
+cta_title:"یک ایده داری؟ بیایید بسازیمش.",cta_desc:"پروژه‌های خوب از یک گفت‌وگوی ساده شروع می‌شوند.",cta_btn:"شروع گفتگو ↗",
+contact_kicker:"CONTACT",contact_title1:"بیا در",contact_title2:"ارتباط باشیم.",contact_desc:"از هر راهی که راحت‌تری با ما تماس بگیر.",
+contact_big:"حرفی برای ساختن داری؟",contact_big_desc:"ایده‌ات را بگو؛ از یک سایت کوچک تا یک پروژه کامل، اول درباره چیزی که می‌خواهی صحبت می‌کنیم.",
+c1:"سروش",c2:"بات سروش",c3:"کانال رسمی",c4:"گیت‌هاب",c5:"شماره تماس",c6:"ایمیل",
+f1:"خدمات",f2:"تیم",f3:"ارتباط",copy:"© WEBAK — ساخته‌شده با ایده، کد و کمی دیوانگی 🚀",
+scroll_hint:"اسکرول کن",
+faq_kicker:"FAQ",faq_title1:"سوالات",faq_title2:"پرتکرار.",faq_desc:"جواب چند سوالی که معمولاً قبل از شروع همکاری پرسیده می‌شود.",
+faq1q:"WEBAK دقیقاً چه خدماتی ارائه می‌دهد؟",faq1a:"طراحی سایت، اپلیکیشن، بات و اتوماسیون، لوگو، پاورپوینت، آموزش Python و Arduino، طراحی رابط برنامه و ویرایش تصویر از خدمات ماست.",
+faq2q:"برای شروع پروژه چه اطلاعاتی لازم است؟",faq2a:"توضیح کوتاه درباره ایده، امکانات موردنیاز، زمان تقریبی و اگر دارید نمونه یا مرجع طراحی کافی است.",
+faq3q:"آیا قبل از شروع، درباره هزینه صحبت می‌کنیم؟",faq3a:"بله. بعد از بررسی نیازهای پروژه، درباره محدوده کار و هزینه با شما هماهنگ می‌کنیم.",
+faq4q:"آیا اعضای WEBAK هنوز نوجوان هستند؟",faq4a:"بله؛ تیم ما جوان است و هم‌زمان با یادگیری، روی پروژه‌های واقعی و تجربه‌های عملی کار می‌کند.",
+faq5q:"چطور می‌توانم به تیم WEBAK بپیوندم؟",faq5a:"از بخش «پیوستن به تیم» فرم درخواست را کامل کن تا اطلاعاتت برای بررسی آماده شود.",
+faq6q:"سایت WEBAK روی موبایل هم درست نمایش داده می‌شود؟",faq6a:"بله؛ ساختار سایت واکنش‌گراست و بخش‌ها برای اندازه‌های مختلف صفحه، از موبایل تا دسکتاپ، تنظیم شده‌اند.",
+faq7q:"امنیت سایت WEBAK چطور است؟",faq7a:"امنیت برای ما مهم است و سایت با HTTPS و اصول رایج توسعه وب نگهداری می‌شود. با این حال هیچ سایت اینترنتی را نمی‌توان ۱۰۰٪ غیرقابل نفوذ اعلام کرد.",
+faq8q:"آیا می‌توانم قبل از سفارش نمونه کارها را ببینم؟",faq8a:"بله؛ می‌توانی از بخش‌های پروژه‌ها و خدمات سایت برای آشنایی با زمینه‌های کاری ما استفاده کنی.",
+faq9q:"آیا پروژه بعداً قابل توسعه است؟",faq9a:"تا حد امکان ساختار پروژه را طوری طراحی می‌کنیم که اضافه کردن قابلیت‌های جدید در آینده ساده‌تر باشد.",
+faq10q:"اگر ایده‌ام در خدمات شما نبود چه؟",faq10a:"مشکلی نیست؛ ایده را توضیح بده تا بررسی کنیم آیا می‌توانیم برای آن یک راهکار اختصاصی طراحی کنیم.",
+
+},
+en:{
+nav_services:"Services",nav_process:"Process",nav_team:"Our Team",nav_join:"Join the Team",nav_contact:"Contact",nav_cta:"Start Project",
+hero_badge:"A small team with big ideas",hero_1:"We make your",hero_2:" ideas",hero_3:" digital.",
+hero_desc:"WEBAK is a young creative team building websites, apps, bots and digital experiences — where ideas don't stay on paper.",
+hero_btn1:"Start a project ↗",hero_btn2:"Meet the team",
+trust1:"Idea to execution",trust2:"Speed focused",trust3:"Custom design",trust4:"Always learning",
+services_kicker:"WHAT WE DO",services_title1:"We build things that",services_title2:"get noticed.",
+services_desc:"From the first concept to the final release, we focus on design, experience and performance.",
+s1t:"Modern Websites",s1d:"Fast, responsive and professional websites designed around your brand instead of a repeated template.",
+s2t:"Applications",s2d:"We turn mobile ideas into useful products with clean interfaces and smooth experiences.",
+s3t:"Bots & Automation",s3d:"Useful bots for different services, from responses and management to repetitive-task automation.",
+s4t:"Digital Design & Identity",s4d:"From color and typography to a consistent interface, we make visual design part of the product identity.",
+s5t:"Translation & Content",s5d:"Persian and English translation and digital content preparation with a focus on clarity and natural tone.",
+s6t:"Optimization & Development",s6d:"Technical fixes, speed improvements, cleaner structures and preparation for future growth.",s7t:"Professional Logo Design",s7d:"Custom logos designed around your brand name, personality and identity.",s8t:"PowerPoint Design",s8d:"Clean and professional presentations for school, university, projects and work.",s9t:"Python Training",s9d:"Simple, project-based Python learning for getting started with programming.",s10t:"Arduino Training",s10d:"Learn Arduino, coding and creative electronics projects.",s11t:"App Interface Design",s11d:"Clean interfaces focused on usability, structure and user experience.",s12t:"Photo Enhancement & Photoshop",s12d:"Image enhancement, editing and Photoshop work for your projects.",
+process_kicker:"HOW IT WORKS",process_title1:"From idea to",process_title2:"building.",
+process_desc:"Our process is simple: clear communication, thoughtful design and step-by-step execution.",
+p1t:"Discover the idea",p1d:"We define the project's needs, goal and audience before building anything.",
+p2t:"Design the path",p2d:"We shape the structure, user experience and development path into manageable stages.",
+p3t:"Build & test",p3d:"We develop, test and continuously bring feedback into the product.",
+p4t:"Deliver & grow",p4d:"The final version is delivered with a structure that can keep evolving.",
+team_kicker:"THE TEAM",team_title1:"Behind WEBAK,",team_title2:"there's us.",
+team_desc:"A young team powered by learning, building and trying new ideas.",
+founder:"WEBAK Founder",engineer:"Engineer / Developer",member:"Team Member",member2:"Team Member",member3:"Team Member",
+years:"years old",years2:"years old",years3:"years old",years4:"years old",years5:"years old",
+team_note:"Yes, our team members are still teenagers — but",team_note_strong:"we take learning, building and real experience seriously.",
+team_more:"Full engineer profiles ↗",
+cta_title:"Have an idea? Let's build it.",cta_desc:"Great projects often start with a simple conversation.",cta_btn:"Start a conversation ↗",
+contact_kicker:"CONTACT",contact_title1:"Let's",contact_title2:"stay in touch.",contact_desc:"Reach us through whichever way you prefer.",
+contact_big:"Have something to build?",contact_big_desc:"Tell us your idea. From a small website to a complete project, let's talk about what you need first.",
+c1:"Soroush",c2:"Soroush Bot",c3:"Official Channel",c4:"GitHub",c5:"Phone",c6:"Email",
+f1:"Services",f2:"Team",f3:"Contact",copy:"© WEBAK — Built with ideas, code and a little madness 🚀",
+scroll_hint:"Scroll",
+faq_kicker:"FAQ",faq_title1:"Frequently",faq_title2:"asked.",faq_desc:"Answers to questions people often ask before starting.",
+faq1q:"What services does WEBAK provide?",faq1a:"Websites, apps, bots and automation, logo design, PowerPoint, Python and Arduino training, app UI and image editing.",
+faq2q:"What do you need to start a project?",faq2a:"A short description of the idea, required features, approximate timeline and any design reference you have.",
+faq3q:"Do we discuss the price before starting?",faq3a:"Yes. After reviewing the project scope, we discuss the work and estimated cost.",
+faq4q:"Are WEBAK members still teenagers?",faq4a:"Yes. Our team is young and combines learning with real projects and practical experience.",
+faq5q:"How can I join WEBAK?",faq5a:"Use the Join the Team form to prepare your application for review.",
+faq6q:"Does WEBAK work well on mobile?",faq6a:"Yes. The site is responsive and adapts its sections to different screen sizes.",
+faq7q:"How secure is the WEBAK website?",faq7a:"Security matters to us, and the site uses HTTPS and common web development practices. No internet site can honestly be guaranteed 100% unhackable.",
+faq8q:"Can I see examples before ordering?",faq8a:"Yes. The services and project areas on the site can help you understand our work.",
+faq9q:"Can a project be expanded later?",faq9a:"We try to structure projects so adding new features later is easier.",
+faq10q:"What if my idea is not listed as a service?",faq10a:"Tell us about it and we can review whether a custom solution is possible.",
+
+}};
+
+let lang="fa";
+let theme="dark";
+
+function applyLang(){
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==="fa"?"rtl":"ltr";
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+   const key=el.dataset.i18n;
+   if(translations[lang][key]) el.textContent=translations[lang][key];
+ });
+ document.getElementById("langBtn").textContent=lang==="fa"?"EN":"فا";
+ localStorage.setItem("webak-lang",lang);
+}
+function applyTheme(){
+ document.documentElement.dataset.theme=theme;
+ document.getElementById("themeBtn").textContent=theme==="dark"?"☾":"☀";
+ localStorage.setItem("webak-theme",theme);
+}
+document.getElementById("langBtn").onclick=()=>{lang=lang==="fa"?"en":"fa";applyLang()};
+document.getElementById("themeBtn").onclick=()=>{theme=theme==="dark"?"light":"dark";applyTheme()};
+
+try{
+ const savedLang=localStorage.getItem("webak-lang");
+ const savedTheme=localStorage.getItem("webak-theme");
+ if(savedLang==="fa"||savedLang==="en")lang=savedLang;
+ if(savedTheme==="dark"||savedTheme==="light")theme=savedTheme;
+}catch(e){}
+applyLang();applyTheme();
+
+/* navbar */
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>40));
+
+/* reveal */
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+   if(entry.isIntersecting){
+     entry.target.classList.add("show");
+     observer.unobserve(entry.target);
+   }
+ });
+},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+/* particles */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+let particles=[];
+function resize(){
+ canvas.width=innerWidth;
+ canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+for(let i=0;i<55;i++){
+ particles.push({
+   x:Math.random()*innerWidth,
+   y:Math.random()*innerHeight,
+   r:Math.random()*1.2+.3,
+   vx:(Math.random()-.5)*.12,
+   vy:(Math.random()-.5)*.12,
+   a:Math.random()*.18+.04,
+   orange:i<6
+ });
+}
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ particles.forEach(p=>{
+   p.x+=p.vx;p.y+=p.vy;
+   if(p.x<0||p.x>canvas.width)p.vx*=-1;
+   if(p.y<0||p.y>canvas.height)p.vy*=-1;
+   ctx.beginPath();
+   ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+   ctx.fillStyle=p.orange?`rgba(255,107,0,${p.a})`:`rgba(180,195,215,${p.a})`;
+   ctx.fill();
+   particles.forEach(q=>{if(q===p)return;const d=Math.hypot(p.x-q.x,p.y-q.y);if(d<95){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(255,107,0,${.045*(1-d/95)})`;ctx.stroke();}});
+ });
+ requestAnimationFrame(draw);
+}
+draw();
+
+
+/* ===== Moving build row ===== */
+const buildData=[
+ {key:"bots",title:"🤖 بات‌های هوشمند و اختصاصی",short:"ساخت بات برای سروش، تلگرام، بله و سایر پیام‌رسان‌ها با امکانات اختصاصی.",detail:"طراحی و توسعه بات‌های اختصاصی برای <strong>سروش، تلگرام، بله و سایر پیام‌رسان‌ها</strong>؛ از بات‌های ساده دارای منو و پاسخ خودکار تا سیستم‌های پیشرفته برای ثبت سفارش، مدیریت کاربران، اطلاع‌رسانی، پشتیبانی و اتصال به سرویس‌های مختلف."},
+ {key:"web",title:"🌐 طراحی و ساخت سایت",short:"ساخت سایت‌های مدرن، سریع و واکنش‌گرا متناسب با نیاز پروژه.",detail:"ساخت سایت‌های معرفی، شخصی، خدماتی، شرکتی و پروژه‌های اختصاصی با طراحی مدرن، واکنش‌گرا و قابل توسعه؛ از ایده و طراحی اولیه تا آماده‌سازی نسخه نهایی."},
+ {key:"app",title:"📱 طراحی محیط اپلیکیشن",short:"طراحی رابط کاربری و تجربه کاربری برای اپلیکیشن‌های مختلف.",detail:"طراحی UI و UX اپلیکیشن با تمرکز روی ظاهر حرفه‌ای، استفاده آسان، ساختار منظم و هماهنگی بین صفحات و بخش‌های مختلف برنامه."},
+ {key:"logo",title:"🎨 طراحی لوگو و هویت بصری",short:"ساخت لوگوی اختصاصی متناسب با نام و شخصیت برند.",detail:"طراحی لوگو برای برندها، گروه‌ها، شرکت‌ها و پروژه‌ها با توجه به رنگ، فونت، سبک موردنظر و کاربردهای مختلف لوگو در سایت، شبکه‌های اجتماعی و محتوای دیجیتال."},
+ {key:"ppt",title:"📊 ساخت پاورپوینت حرفه‌ای",short:"ارائه‌های منظم و جذاب برای مدرسه، دانشگاه، پروژه و کار.",detail:"طراحی پاورپوینت با چیدمان حرفه‌ای، تایپوگرافی مناسب، تصاویر و ساختار منظم؛ مناسب ارائه‌های آموزشی، پروژه‌های مدرسه و دانشگاه و ارائه‌های رسمی."},
+ {key:"python",title:"🐍 آموزش و پروژه‌های Python",short:"یادگیری پایتون از پایه تا ساخت پروژه‌های کاربردی.",detail:"آموزش پایتون با تمرکز روی یادگیری عملی، تمرین و پروژه؛ مناسب شروع برنامه‌نویسی و ساخت ابزارها و پروژه‌های ساده و کاربردی."},
+ {key:"arduino",title:"🔧 پروژه‌های Arduino",short:"ساخت و آموزش پروژه‌های آردوینو و الکترونیک خلاقانه.",detail:"طراحی و اجرای پروژه‌های آردوینو، برنامه‌نویسی برد و کار با قطعات الکترونیکی؛ از پروژه‌های آموزشی ساده تا ایده‌های خلاقانه و کاربردی."},
+ {key:"ui",title:"🖥️ طراحی UI/UX",short:"طراحی ظاهر و تجربه کاربری برای سایت و اپلیکیشن.",detail:"طراحی رابط کاربری تمیز و منظم، انتخاب رنگ و فونت، چیدمان صفحات و بهبود تجربه کاربر با هدف ایجاد محصولی قابل فهم، زیبا و کاربردی."},
+ {key:"photo",title:"🖼️ بهبود کیفیت و ادیت عکس",short:"افزایش کیفیت، اصلاح و ویرایش تصاویر و Photoshop.",detail:"افزایش کیفیت تصاویر، اصلاح رنگ و نور، ویرایش بخش‌های مختلف عکس، حذف یا تغییر عناصر و انجام ادیت‌های موردنیاز با ابزارهای گرافیکی."},
+ {key:"custom",title:"⚙️ پروژه‌های اختصاصی",short:"اگر ایده‌ای داری که در لیست نیست، برایش راهکار می‌سازیم.",detail:"پروژه‌های خاص همیشه در یک دسته مشخص جا نمی‌شوند. ایده خودت را توضیح بده تا بتوانیم نیازها، امکانات و مسیر اجرای آن را بررسی کنیم و یک راهکار اختصاصی پیشنهاد بدهیم."}
+];
+const buildItems=[...document.querySelectorAll('.build-item:not(.clone)')];
+const buildTitle=document.getElementById('buildTitle');
+const buildShort=document.getElementById('buildShort');
+const buildDetail=document.getElementById('buildDetail');
+const buildBadge=document.getElementById('buildBadge');
+let buildIndex=0;
+function showBuild(i){
+ buildIndex=(i+buildData.length)%buildData.length;
+ const d=buildData[buildIndex];
+ buildItems.forEach((el,j)=>el.classList.toggle('active',j===buildIndex));
+ buildBadge.textContent=String(buildIndex+1).padStart(2,'0');
+ buildTitle.innerHTML=d.title;
+ buildShort.textContent=d.short;
+ buildDetail.innerHTML=d.detail;
+ buildDetail.style.animation='none'; void buildDetail.offsetWidth; buildDetail.style.animation='buildDetailIn .35s ease';
+}
+buildItems.forEach((el,i)=>el.addEventListener('click',()=>showBuild(i)));
+document.querySelectorAll('.build-item.clone').forEach(el=>{const i=buildData.findIndex(x=>x.key===el.dataset.build);el.addEventListener('click',()=>showBuild(i));});
+showBuild(0);
+
+/* ===== WEBAK V2 JS ===== */
+
+/* Persian/Jalali age calculation */
+function jalaliToGregorian(jy,jm,jd){
+  let gy = jy + 621;
+  let days = (jy >= 0 ? 0 : 0) + 365 * (jy - 979);
+  let y = jy - 979;
+  let leap = 0;
+  let jy2 = jy;
+  let gy2 = gy;
+  // Compact Jalali conversion using the standard 2820-cycle algorithm.
+  let epBase = jy2 - (jy2 >= 0 ? 474 : 473);
+  let epYear = 474 + (epBase % 2820);
+  let mdays = jm <= 7 ? (jm - 1) * 31 : (jm - 1) * 30 + 6;
+  let jdn = jd + mdays + Math.floor((epYear * 682 - 110) / 2816) + (epYear - 1) * 365 + Math.floor(epBase / 2820) * 1029983 + (1948320 - 1);
+  let j = jdn + 68569;
+  let n = Math.floor(4*j/146097);
+  j = j - Math.floor((146097*n+3)/4);
+  let i = Math.floor(4000*(j+1)/1461001);
+  j = j - Math.floor(1461*i/4) + 31;
+  let k = Math.floor(80*j/2447);
+  let gd = j - Math.floor(2447*k/80);
+  j = Math.floor(k/11);
+  let gm = k + 2 - 12*j;
+  let gyOut = 100*(n-49)+i+j;
+  return {gy:gyOut,gm,gd};
+}
+function ageFromJalali(dateStr){
+  const [jy,jm,jd]=dateStr.split("-").map(Number);
+  const g=jalaliToGregorian(jy,jm,jd);
+  const birth=new Date(g.gy,g.gm-1,g.gd);
+  const now=new Date();
+  let age=now.getFullYear()-birth.getFullYear();
+  const birthday=new Date(now.getFullYear(),birth.getMonth(),birth.getDate());
+  if(now<birthday) age--;
+  return age;
+}
+function updateAges(){
+  document.querySelectorAll("[data-birth]").forEach(el=>{
+    const age=ageFromJalali(el.dataset.birth);
+    const span=el.querySelector("span");
+    el.firstChild.textContent=age+" ";
+  });
+}
+updateAges();
+
+
+/* ===== Team application form ===== */
+const openJoinForm=document.getElementById("openJoinForm");
+const joinFormWrap=document.getElementById("joinFormWrap");
+if(openJoinForm){
+  openJoinForm.addEventListener("click",()=>{
+    joinFormWrap.hidden=false;
+    joinFormWrap.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+}
+function buildJoinRequest(){
+  const v=id=>document.getElementById(id).value.trim();
+  return `📋 درخواست عضویت در تیم WEBAK
+
+👤 نام و نام خانوادگی: ${v("joinName")}
+🎂 سال تولد: ${v("joinBirth")}
+🔢 سن: ${v("joinAge")} سال
+🏫 مدرسه: ${v("joinSchool")}
+🤝 راه آشنایی با WEBAK: ${v("joinHow")}
+📱 آیدی سروش: ${v("joinSoroush") || "ثبت نشده"}
+☎️ شماره تماس: ${v("joinPhone") || "ثبت نشده"}
+
+💬 مهارت‌ها / توضیحات:
+${v("joinSkills") || "ثبت نشده"}
+
+🚀 این درخواست از فرم عضویت سایت WEBAK ارسال شده است.`;
+}
+document.getElementById("copyJoinRequest").addEventListener("click",async()=>{
+  const form=document.getElementById("joinForm");
+  if(!form.reportValidity()) return;
+  const status=document.getElementById("joinStatus");
+  const request=buildJoinRequest();
+  try{
+    await navigator.clipboard.writeText(request);
+    status.textContent="✅ متن درخواست کپی شد! حالا روی «باز کردن سروش رامتین» بزن و متن را ارسال کن.";
+  }catch(e){
+    status.textContent="⚠️ کپی خودکار توسط مرورگر اجازه داده نشد؛ متن را از ابزارهای مرورگر کپی کن.";
+  }
+});
+document.getElementById("openSoroush").addEventListener("click",()=>{
+  window.open("https://splus.ir/RAMtinHB","_blank","noopener");
+});
+
+/* ===== Built-in HTML playground ===== */
+const defaultHtml=document.getElementById("htmlCode").value;
+function runHtml(){
+  const code=document.getElementById("htmlCode").value;
+  const frame=document.getElementById("htmlPreview");
+  frame.srcdoc=code;
+}
+document.getElementById("runHtml").addEventListener("click",runHtml);
+document.getElementById("resetHtml").addEventListener("click",()=>{
+  document.getElementById("htmlCode").value=defaultHtml;
+  runHtml();
+});
+document.getElementById("htmlCode").addEventListener("input",()=>{
+  clearTimeout(window.__htmlRunTimer);
+  window.__htmlRunTimer=setTimeout(runHtml,350);
+});
+runHtml();
+
+/* FAQ accordion */
+document.querySelectorAll(".faq-question").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const item=btn.closest(".faq-item");
+    document.querySelectorAll(".faq-item.open").forEach(x=>{if(x!==item)x.classList.remove("open")});
+    item.classList.toggle("open");
+  });
+});
+
+/* Back to top */
+const backTop=document.getElementById("backTop");
+addEventListener("scroll",()=>{
+  backTop.classList.toggle("show",scrollY>500);
+});
+backTop.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+
+/* Copy / save / context-menu protection.
+   This is a deterrent, not a security boundary; browser tools can bypass it. */
+document.body.classList.add("no-copy");
+const isEditableTarget=e=>{
+  const el=e.target;
+  return el && (el.matches("input,textarea,select,[contenteditable='true']") || el.closest("#joinFormWrap,#html-lab"));
+};
+document.addEventListener("contextmenu",e=>{if(!isEditableTarget(e))e.preventDefult()});
+document.addEventListener("dragstart",e=>{
+  if(!e.target.closest("input,textarea,#htmlCode") && e.target.closest("img,a")) e.preventDefault();
+});
+document.addEventListener("copy",e=>{if(!isEditableTarget(e))e.preventDefault()});
+document.addEventListener("cut",e=>{if(!isEditableTarget(e))e.preventDefault()});
+document.addEventListener("selectstart",e=>{if(!isEditableTarget(e))e.preventDefault()});
+document.addEventListener("keydown",e=>{
+  if(isEditableTarget(e)) return;
+  const k=e.key.toLowerCase();
+  if((e.ctrlKey||e.metaKey) && ["c","x","u","s","a","p"].includes(k)) e.preventDefault();
+  if(e.key==="F12") e.preventDefault();
+});
+
+</script>
+
+<button class="back-top" id="backTop" aria-label="Back to top" title="بالا">↑</button>
+</body>
+</html>
