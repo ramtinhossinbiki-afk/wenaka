@@ -152,7 +152,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
               />
 
               <img
-                src="/assets/aistudio/webaklogo-removebg-preview__1__d6dccabe_d6dccabe.png"
+                src="https://raw.githubusercontent.com/ramtinhossinbiki-afk/wenaka/refs/heads/main/public/assets/aistudio/webaklogo-removebg-preview__1__d6dccabe_d6dccabe.png"
                 alt="WEBAK Studio Emblem"
                 draggable={false}
                 className="animate-logo-float relative z-10 w-[56%] max-w-[205px] select-none object-contain"
